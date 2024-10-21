@@ -1,6 +1,6 @@
 // #1: Importing necessary components, including ImageBackground for background image
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 
 export default function App() {
   // #2: Adding state for entered goal text and list of course goals
@@ -35,7 +35,11 @@ export default function App() {
             onChangeText={goalInputHandler}
             value={enteredGoalText} // Controlled input
           />
-          <Button title="Add Goal" onPress={addGoalHandler} />
+          
+          {/* #6: Using TouchableOpacity for custom button styling */}
+          <TouchableOpacity style={styles.addButton} onPress={addGoalHandler}>
+            <Text style={styles.addButtonText}>Add Goal</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.goalsContainer}>
@@ -49,7 +53,7 @@ export default function App() {
   );
 }
 
-// #6: Adding styles - background image, input, and goal list styles
+// #7: Adding styles - background image, input, and goal list styles
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
@@ -74,12 +78,28 @@ const styles = StyleSheet.create({
 
   textInput: {
     borderWidth: 1,
-    borderColor: '#cccccc',
+    borderColor: '#003399',
+    color: '#fff',
     width: '70%', // Adjusted for better responsiveness
     padding: 10,
     borderRadius: 5,
-    backgroundColor: '#fff',
+    //backgroundColor: '#858f8b',
+    backgroundColor: 'rgba(0, 71, 171, 0.25)',
     marginRight: 10, // Adding space between text input and button
+  },
+
+  // #8: Adding styles for custom button
+  addButton: {
+    backgroundColor: 'rgba(0, 71, 171, 0.5)', // Example color: orange with 80% opacity
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 5,
+  },
+
+  addButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 
   goalsContainer: {
@@ -98,11 +118,12 @@ const styles = StyleSheet.create({
   goalItem: {
     fontSize: 16,
     color: '#fff',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    //backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0, 71, 171, 0.2)',
     padding: 10,
     borderRadius: 5,
     marginVertical: 5,
-    width: '90%', // Ensure goals take a consistent width
+    width: '100%', // Ensure goals take a consistent width
     textAlign: 'center', // Center text in goal items
   },
 });
