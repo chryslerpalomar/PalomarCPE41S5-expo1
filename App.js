@@ -23,44 +23,60 @@ export default function App() {
 
   // #5: Return block - Adding background image, TextInput for adding goals, and displaying the list of goals
   return (
-    <ImageBackground
-      source={{ uri: 'https://www.baltana.com/files/wallpapers-17/Beautiful-Stars-HD-Wallpapers-43701.jpg' }}
-      style={styles.backgroundImage}>
-
+    <View style={styles.container}>
+      <ImageBackground
+        source={{ uri: 'https://www.baltana.com/files/wallpapers-17/Beautiful-Stars-HD-Wallpapers-43701.jpg' }}
+        style={styles.backgroundImage}>
+        
+        {/* Overlay view to add the faded grey effect */}
+        <View style={styles.overlay} />
+      </ImageBackground>
+  
+      {/* Rest of the content placed outside the overlay */}
       <View style={styles.appContainer}>
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Your course goal!"
+            placeholderTextColor="#cccccc"
             style={styles.textInput}
             onChangeText={goalInputHandler}
-            value={enteredGoalText} // Controlled input
+            value={enteredGoalText}
           />
-          
-          {/* #6: Using TouchableOpacity for custom button styling */}
           <TouchableOpacity style={styles.addButton} onPress={addGoalHandler}>
             <Text style={styles.addButtonText}>Add Goal</Text>
           </TouchableOpacity>
         </View>
-
+  
         <View style={styles.goalsContainer}>
-          <Text style={styles.goalTitle}>List of Goals - Chrysler Palomar</Text> {/* Adding proof of work */}
+          <Text style={styles.goalTitle}>        List of Goals - Chrysler Palomar        </Text>
           {courseGoals.map((goal, index) => (
-            <Text key={index} style={styles.goalItem}>{goal}</Text> /* Displaying list of goals */
+            <Text key={index} style={styles.goalItem}>{goal}</Text>
           ))}
         </View>
       </View>
-    </ImageBackground>
-  );
+    </View>
+  );  
 }
 
 // #7: Adding styles - background image, input, and goal list styles
 const styles = StyleSheet.create({
+  container: {
+    flex: 1, // Ensure the container fills the screen
+  },
+
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
-    justifyContent: 'flex-start', // Keeping vertical alignment at the top
-    alignItems: 'center', // Centering items horizontally
+    position: 'absolute', // Keep the background fixed
+    width: '100%', // Cover the full width
+    height: '100%', // Cover the full height
   },
+
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(20, 20, 20, 0.5)', // Faded grey overlay
+  },
+
   
   appContainer: {
     padding: 50,
@@ -78,7 +94,7 @@ const styles = StyleSheet.create({
 
   textInput: {
     borderWidth: 1,
-    borderColor: '#003399',
+    borderColor: '#00bfff',
     color: '#fff',
     width: '70%', // Adjusted for better responsiveness
     padding: 10,
@@ -90,10 +106,12 @@ const styles = StyleSheet.create({
 
   // #8: Adding styles for custom button
   addButton: {
-    backgroundColor: 'rgba(0, 71, 171, 0.5)', // Example color: orange with 80% opacity
+    backgroundColor: 'rgba(0, 71, 171, 0.5)',
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 5,
+    borderWidth: 2,
+    borderColor: '#00bfff',
   },
 
   addButtonText: {
@@ -104,7 +122,7 @@ const styles = StyleSheet.create({
 
   goalsContainer: {
     marginTop: 20,
-    alignItems: 'center', // Centering the goal items horizontally
+    alignItems: 'center',
   },
 
   goalTitle: {
@@ -113,6 +131,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     marginBottom: 10,
+  
+    borderTopWidth: 2, 
+    borderBottomWidth: 2, 
+    borderTopColor: '#00bfff',
+    borderBottomColor: '#00bfff', 
+    paddingVertical: 10, 
   },
 
   goalItem: {
@@ -120,7 +144,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     //backgroundColor: 'rgba(0,0,0,0.5)',
     backgroundColor: 'rgba(0, 71, 171, 0.2)',
-    padding: 10,
+    padding: 5,
     borderRadius: 5,
     marginVertical: 5,
     width: '100%', // Ensure goals take a consistent width
