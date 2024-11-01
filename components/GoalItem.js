@@ -1,3 +1,4 @@
+// GoalItem.js
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native'; 
 
@@ -12,17 +13,17 @@ function GoalItem(props) {
 const styles = StyleSheet.create({
     goalItems: {
         backgroundColor: 'rgba(0, 71, 171, 0.2)',
-        padding: 10,
+        padding: 8,
         borderRadius: 5,
         marginVertical: 5,
         width: '100%', 
-        minWidth: 340,
+        minWidth: 320,
         textAlign: 'center', 
         justifyContent: 'center', 
         alignItems: 'center',
     },
     goalText: {
-        fontSize: 16,
+        fontSize: 13.5,
         color: '#fff',
         textAlign: 'center',
     }
