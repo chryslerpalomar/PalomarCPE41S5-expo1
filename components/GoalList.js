@@ -1,14 +1,21 @@
+// GoalList.js
+
 import React from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList } from 'react-native';
 import GoalItem from './GoalItem';
 
-function GoalList({ goals }) {
+function GoalList({ goals, onDeleteGoal }) {
   return (
     <FlatList
       data={goals}
-      renderItem={(itemData) => <GoalItem text={itemData.item.text} />}
+      renderItem={(itemData) => (
+        <GoalItem
+          text={itemData.item.text}
+          id={itemData.item.key}
+          onDeleteGoal={onDeleteGoal}
+        />
+      )}
       keyExtractor={(item) => item.key}
-      style={{ flex: 1 }}
     />
   );
 }

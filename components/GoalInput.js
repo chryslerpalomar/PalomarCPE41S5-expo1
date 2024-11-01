@@ -38,6 +38,7 @@ function GoalInput(props) {
 
 const styles = StyleSheet.create({
   inputContainer: {
+    marginTop: 0,
     flexDirection: 'row',
     justifyContent: 'center', 
     alignItems: 'center',
