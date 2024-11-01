@@ -1,9 +1,9 @@
 // GoalInput.js
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { useState } from 'react'; 
+import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
+import { useState } from 'react';
 
 function GoalInput(props) { 
-  const [enteredGoalText, setEnteredGoalText] = useState(''); 
+  const [enteredGoalText, setEnteredGoalText] = useState('');
 
   function textInputHandler(enteredText) { 
     setEnteredGoalText(enteredText);
@@ -23,9 +23,15 @@ function GoalInput(props) {
         onChangeText={textInputHandler} 
         value={enteredGoalText} 
       />
-      <TouchableOpacity style={styles.addButton} onPress={addGoalHandler}> 
+      <Pressable 
+        style={({ pressed }) => [
+          styles.addButton,
+          pressed && styles.addButtonPressed
+        ]}
+        onPress={addGoalHandler}
+      > 
         <Text style={styles.addButtonText}>Add Goal</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 }
@@ -56,6 +62,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#00bfff',
   },
+  addButtonPressed: {
+    backgroundColor: 'rgba(0, 71, 171, 0.8)',
+  },
   addButtonText: {
     color: '#fff',
     fontSize: 16,
@@ -63,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GoalInput; 
+export default GoalInput;

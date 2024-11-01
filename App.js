@@ -21,15 +21,14 @@ export default function App() {
   }
   return (
     <View style={styles.container}>
-      
       <ImageBackground
         source={{
           uri: 'https://www.baltana.com/files/wallpapers-17/Beautiful-Stars-HD-Wallpapers-43701.jpg',
         }}
         style={styles.backgroundImage}>
-        <View style={styles.overlay} /> 
+        <View style={styles.overlay} />
       </ImageBackground>
-      
+
       <View style={styles.appContainer}>
         <GoalInput onAddGoal={addGoalHandler} />
 
@@ -84,5 +83,3 @@ const styles = StyleSheet.create({
     width: 320,
   },
 });
-
-
