@@ -1,5 +1,5 @@
 // GoalInput.js
-import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable, Keyboard } from 'react-native';
 import { useState } from 'react';
 
 function GoalInput(props) { 
@@ -12,6 +12,7 @@ function GoalInput(props) {
   function addGoalHandler() { 
     props.onAddGoal(enteredGoalText); 
     setEnteredGoalText(''); 
+    Keyboard.dismiss(); // Close the keyboard after adding the goal
   }
 
   return (
@@ -21,7 +22,9 @@ function GoalInput(props) {
         placeholderTextColor="#cccccc"
         style={styles.textInput}
         onChangeText={textInputHandler} 
-        value={enteredGoalText} 
+        value={enteredGoalText}
+        onSubmitEditing={addGoalHandler} // Bind ENTER key to addGoalHandler
+        returnKeyType="done" // Change the return key type
       />
       <Pressable 
         style={({ pressed }) => [
@@ -38,7 +41,6 @@ function GoalInput(props) {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    marginTop: 0,
     flexDirection: 'row',
     justifyContent: 'center', 
     alignItems: 'center',
